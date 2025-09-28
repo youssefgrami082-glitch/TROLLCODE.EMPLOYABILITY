@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Level-Based Employability Score Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 30px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 420px;
+            text-align: left;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+            text-align: left;
+        }
+        .improvement {
+            margin-top: 15px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.4;
+        }
+        .improvement a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .improvement a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Level-Based Employability Score Calculator</h1>
+        
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your full name" />
+
+        <label for="age">Age (18-65):</label>
+        <input type="number" id="age" min="18" max="65" />
+
+        <label for="experience">Years of Experience (0-40):</label>
+        <input type="number" id="experience" min="0" max="40" />
+
+        <label for="education">Education Level (1-5):</label>
+        <input type="number" id="education" min="1" max="5" />
+
+        <label for="hardSkills">Hard Skills Level:</label>
+        <select id="hardSkills">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="softSkills">Soft Skills Level:</label>
+        <select id="softSkills">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="managerialSkills">Managerial Skills Level:</label>
+        <select id="managerialSkills">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="languages">Number of Languages Spoken (1-10):</label>
+        <input type="number" id="languages" min="1" max="10" />
+
+        <label for="socialInteraction">Social Interaction Level:</label>
+        <select id="socialInteraction">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="activities">Activities Level:</label>
+        <select id="activities">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="hobbiesLevel">Hobbies Level:</label>
+        <select id="hobbiesLevel">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="sportsLevel">Sports Level:</label>
+        <select id="sportsLevel">
+            <option value="1">Basic</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <label for="generalKnowledge">General Knowledge Level:</label>
+        <select id="generalKnowledge">
+            <option value="1">Soft</option>
+            <option value="2">Medium</option>
+            <option value="3">Advanced</option>
+        </select>
+
+        <button onclick="calculateScore()">Calculate Employability Score</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const name = document.getElementById('name').value.trim();
+            const age = parseInt(document.getElementById('age').value);
+            const experience = parseFloat(document.getElementById('experience').value);
+            const education = parseFloat(document.getElementById('education').value);
+
+            const hardSkills = parseInt(document.getElementById('hardSkills').value);
+            const softSkills = parseInt(document.getElementById('softSkills').value);
+            const managerialSkills = parseInt(document.getElementById('managerialSkills').value);
+            const languages = parseInt(document.getElementById('languages').value);
+            const socialInteraction = parseInt(document.getElementById('socialInteraction').value);
+            const activities = parseInt(document.getElementById('activities').value);
+            const hobbies = parseInt(document.getElementById('hobbiesLevel').value);
+            const sports = parseInt(document.getElementById('sportsLevel').value);
+            const generalKnowledge = parseInt(document.getElementById('generalKnowledge').value);
+
+            if (!name) {
+                alert('Please enter your full name.');
+                return;
+            }
+            if (isNaN(age) || age < 18 || age > 65) {
+                alert('Please enter a valid age between 18 and 65.');
+                return;
+            }
+            if (isNaN(experience) || experience < 0 || experience > 40) {
+                alert('Please enter valid years of experience (0-40).');
+                return;
+            }
+            if (isNaN(education) || education < 1 || education > 5) {
+                alert('Please enter valid education level (1-5).');
+                return;
+            }
+            if (isNaN(languages) || languages < 1 || languages > 10) {
+                alert('Please enter valid number of languages (0-10).');
+                return;
+            }
+            const levelValues = [hardSkills, softSkills, managerialSkills, socialInteraction, activities, hobbies, sports, generalKnowledge];
+            if (levelValues.some(v => ![1,2,3].includes(v))) {
+                alert('Please select valid levels for skills and knowledge.');
+                return;
+            }
+
+            function levelToScore(level) {
+                switch(level) {
+                    case 1: return 40;
+                    case 2: return 70;
+                    case 3: return 100;
+                    default: return 0;
+                }
+            }
+
+            const hardSkillsScore = levelToScore(hardSkills);
+            const softSkillsScore = levelToScore(softSkills);
+            const managerialSkillsScore = levelToScore(managerialSkills);
+            const socialInteractionScore = levelToScore(socialInteraction);
+            const activitiesScore = levelToScore(activities);
+            const hobbiesScore = levelToScore(hobbies);
+            const sportsScore = levelToScore(sports);
+            const generalKnowledgeScore = levelToScore(generalKnowledge);
+
+            const maxExperience = 40;
+            const maxEducation = 5;
+            const maxLanguages = 10;
+
+            const experienceScore = (experience / maxExperience) * 12;
+            const educationScore = (education / maxEducation) * 8;
+            const languagesScore = (languages / maxLanguages) * 5;
+
+            let ageScore = 0;
+            if (age >= 25 && age <= 40) {
+                ageScore = 10;
+            } else if (age < 25 && age >= 18) {
+                ageScore = ((age - 18) / (25 - 18)) * 10;
+            } else if (age > 40 && age <= 65) {
+                ageScore = ((65 - age) / (65 - 40)) * 10;
+            }
+
+            const totalScore = experienceScore + educationScore + 
+                (hardSkillsScore * 0.15) + (softSkillsScore * 0.15) + (managerialSkillsScore * 0.10) +
+                languagesScore + (socialInteractionScore * 0.07) + (activitiesScore * 0.05) +
+                (hobbiesScore * 0.03) + (sportsScore * 0.03) + (generalKnowledgeScore * 0.07) + ageScore;
+
+            let grade = '';
+            let improvementText = '';
+            if (totalScore >= 85) {
+                grade = 'Excellent';
+                improvementText = `Great job! You have a strong employability profile. To further enhance your skills, consider advanced leadership training or new certifications. Explore resources like <a href="https://www.coursera.org" target="_blank">Coursera</a> or <a href="https://www.linkedin.com/learning/" target="_blank">LinkedIn Learning</a>.`;
+            }
+            else if (totalScore >= 70) {
+                grade = 'Very Good';
+                improvementText = `You have a solid foundation. To improve, focus on advancing your soft skills and managerial abilities. Online courses at <a href="https://www.udemy.com" target="_blank">Udemy</a> and public speaking clubs (like Toastmasters) can help.`;
+            }
+            else if (totalScore >= 50) {
+                grade = 'Good';
+                improvementText = `There is room for improvement. Enhancing your language skills, social interaction, and general knowledge can boost employability. Try apps like <a href="https://www.duolingo.com" target="_blank">Duolingo</a> for languages and <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> for general skills.`;
+            }
+            else {
+                grade = 'Needs Improvement';
+                improvementText = `Consider improving experience, education, and basic skills. Start with foundational courses at <a href="https://www.codecademy.com" target="_blank">Codecademy</a> or <a href="https://www.edx.org" target="_blank">edX</a>, and seek mentorship to develop soft and managerial skills.`;
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                Hello <strong>${name}</strong>!<br/>
+                Your Employability Score is: <strong>${totalScore.toFixed(2)}</strong> / 100<br/>
+                Grade: <strong>${grade}</strong>
+                <div class="improvement">${improvementText}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
+
+</body>
+</html>
